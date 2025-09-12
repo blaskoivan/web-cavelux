@@ -1,9 +1,9 @@
 ---
 const nav = [
-  { href: "#nosotros", label: "Nosotros" },
+  { href: "#servicios", label: "Servicios" },
   { href: "#trabajos", label: "Trabajos" },
   { href: "#clientes", label: "Clientes" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "#FAQ", label: "FAQ" },
 ];
 const images = [
   "/imagen1.jpg",
@@ -36,7 +36,7 @@ const images = [
   <!-- Contenido del header -->
   <div class="relative z-30 mx-auto max-w-7xl h-full flex flex-col">
     <!-- Barra superior: logo a la izquierda, nav centrado, menú móvil a la derecha -->
-    <div class="flex items-center h-20 w-full px-4 sm:px-6 lg:px-8">
+    <div class="flex items-end h-20 w-full px-4 sm:px-6 lg:px-8">
       <!-- Logo a la izquierda -->
       <a href="#inicio" class="flex-shrink-0 mr-42">
         <img src="/logo_cavelux.png" alt="Cavelux Logo" class="h-16 w-auto" />
@@ -44,12 +44,12 @@ const images = [
 
       <!-- Contenedor central que crece y centra el nav -->
       <div class="flex flex-grow">
-        <nav class="hidden md:flex items-center gap-12 text-white">
+        <nav class="hidden md:flex items-end gap-12 text-white">
           {
             nav.map((item) => (
               <a
                 href={item.href}
-                class="text-sm hover:text-blue-200 transition-colors flex items-center gap-2"
+                class="text-[14px] font-bold hover:text-blue-200 transition-colors flex items-center gap-4"
               >
                 {item.label}
                 {item.label === "Contacto" && (
@@ -121,11 +121,12 @@ const images = [
 
     <!-- Texto centrado debajo de la barra -->
     <div class="flex-grow flex flex-col justify-center items-start text-white text-left px-4 sm:px-6 lg:px-8 gap-4 w-full max-w-xl -mt-50">
-  <h1 class="text-4xl font-bold drop-shadow-lg">Bienvenido a Cavelux</h1>
-  <p class="text-lg drop-shadow-md">
-    Iluminamos tus espacios con tecnología y diseño de vanguardia.
-  </p>
-</div>
+      <h1 class="text-4xl font-bold drop-shadow-lg">Fachadas, gigantografías y corpóreos con producción propia</h1>
+      <p class="text-lg drop-shadow-md">
+        Producción propia, colocación segura y presupuestos dentro del día hábil.
+      </p>
+    </div>
+
     <!-- Controles del carrusel -->
     <div
       id="carousel-controls"

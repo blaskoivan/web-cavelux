@@ -11,6 +11,7 @@ import Intro from '../components/sections/Intro.astro';
 import Hero from '../components/Hero.astro';
 import Divider from '../components/Divider.astro';
 import Clientes from '../components/Clientes.astro';
+import Trabajos from '../components/Trabajos.astro';
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -23,8 +24,11 @@ import Clientes from '../components/Clientes.astro';
   <body class="min-h-screen bg-white text-slate-800 antialiased">
     <Header />
     <Hero />
-
+    
+    <Divider />
+    <Trabajos />
     <Clientes />
+
     
     
     <main class="pt-16">{/* espacio por header sticky */}
