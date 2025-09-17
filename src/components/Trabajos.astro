@@ -30,35 +30,39 @@ const cards = [
   }
 </style>
 
-<div id="trabajos" class="max-w-[95rem] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 rounded-lg overflow-hidden">
-  {cards.map((card) => (
-    <div class="group relative block bg-black rounded-lg overflow-hidden cursor-pointer">
-      <img
-        alt={card.name}
-        src={card.imgSrc}
-        class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-      />
-      <div class="absolute inset-0 bg-[#0b3e61] opacity-0 transition-opacity group-hover:opacity-50"></div>
+<div class="max-w-[95rem] mx-auto mt-16 px-4">
+  <h2 class="text-3xl font-bold text-[#0b3f61] mb-16 text-left">Nuestros trabajos</h2>
 
-      <div class="relative p-4 sm:p-6 lg:p-8">
-        <p class="text-xl font-bold text-white sm:text-2xl">{card.name}</p>
+  <div id="trabajos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 rounded-lg overflow-hidden">
+    {cards.map((card) => (
+      <div class="group relative block bg-black rounded-lg overflow-hidden cursor-pointer">
+        <img
+          alt={card.name}
+          src={card.imgSrc}
+          class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
+        />
+        <div class="absolute inset-0 bg-[#0b3e61] opacity-0 transition-opacity group-hover:opacity-50"></div>
 
-        <div class="mt-32 sm:mt-48 lg:mt-64 space-y-4">
-          <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-            <p class="text-sm text-white">{card.description}</p>
-          </div>
-          <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-            <a
-              href={card.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full block text-center border-2 border-white text-white font-semibold py-2 px-4 rounded transition-colors hover:bg-[#0b3e61] hover:border-[#0b3e61] hover:text-white"
-            >
-              Pedir cotización
-            </a>
+        <div class="relative p-4 sm:p-6 lg:p-8">
+          <p class="text-xl font-bold text-white sm:text-2xl">{card.name}</p>
+
+          <div class="mt-32 sm:mt-48 lg:mt-64 space-y-4">
+            <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
+              <p class="text-sm text-white">{card.description}</p>
+            </div>
+            <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
+              <a
+                href={card.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full block text-center border-2 border-white text-white font-semibold py-2 px-4 rounded transition-colors hover:bg-[#0b3e61] hover:border-[#0b3e61] hover:text-white"
+              >
+                Pedir cotización
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  ))}
+    ))}
+  </div>
 </div>
