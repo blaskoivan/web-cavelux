@@ -28,14 +28,41 @@ const cards = [
   html {
     scroll-behavior: smooth;
   }
+
+  /* Estilos para el hover y la clase activa */
+  .group:hover .hover-content,
+  .group.active .hover-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hover-content {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
 </style>
 
 <div class="max-w-[95rem] mx-auto mt-16 px-4">
   <h2 class="text-3xl font-bold text-[#0b3f61] mb-16 text-left">Nuestros trabajos</h2>
 
   <div id="trabajos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 rounded-lg overflow-hidden">
-    {cards.map((card) => (
-      <div class="group relative block bg-black rounded-lg overflow-hidden cursor-pointer">
+    {cards.map((card, index) => (
+      <div
+        class="group relative block bg-black rounded-lg overflow-hidden cursor-pointer"
+        onClick={() => {
+          // Alternar clase active para simular hover en móvil
+          const el = document.getElementById(`card-${index}`);
+          if (el.classList.contains('active')) {
+            el.classList.remove('active');
+          } else {
+            // Opcional: cerrar otras tarjetas activas
+            document.querySelectorAll('.group.active').forEach((activeEl) => activeEl.classList.remove('active'));
+            el.classList.add('active');
+          }
+        }}
+        id={`card-${index}`}
+      >
         <img
           alt={card.name}
           src={card.imgSrc}
@@ -46,20 +73,16 @@ const cards = [
         <div class="relative p-4 sm:p-6 lg:p-8">
           <p class="text-xl font-bold text-white sm:text-2xl">{card.name}</p>
 
-          <div class="mt-32 sm:mt-48 lg:mt-64 space-y-4">
-            <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-              <p class="text-sm text-white">{card.description}</p>
-            </div>
-            <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-              <a
-                href={card.whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-full block text-center border-2 border-white text-white font-semibold py-2 px-4 rounded transition-colors hover:bg-[#0b3e61] hover:border-[#0b3e61] hover:text-white"
-              >
-                Pedir cotización
-              </a>
-            </div>
+          <div class="mt-32 sm:mt-48 lg:mt-64 space-y-4 hover-content">
+            <p class="text-sm text-white">{card.description}</p>
+            <a
+              href={card.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full block text-center border-2 border-white text-white font-semibold py-2 px-4 rounded transition-colors hover:bg-[#0b3e61] hover:border-[#0b3e61] hover:text-white"
+            >
+              Pedir cotización
+            </a>
           </div>
         </div>
       </div>
