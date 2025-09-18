@@ -21,16 +21,20 @@ import Servicios from '../components/Servicios.astro';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+
+    <!-- Preconnect para optimizar la carga de la fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Carga de la fuente Assistant con pesos de 200 a 800 -->
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap" rel="stylesheet" />
   </head>
-  <body class="min-h-screen bg-white text-slate-800 antialiased">
+  <body class="min-h-screen bg-white text-slate-800 antialiased" style="font-family: 'Assistant', sans-serif;">
     <Header />
     <Hero />
     <Servicios />
     <Trabajos />
     <Clientes />
 
-    
-    
     <main class="pt-16">{/* espacio por header sticky */}
       <slot />
     </main>
