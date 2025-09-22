@@ -1,34 +1,61 @@
 <section class="w-full">
   <div class="w-full px-6 py-8 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-center md:gap-12">
+    <div
+      class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-center md:gap-12"
+    >
       <!-- Columna izquierda -->
       <div>
         <div class="max-w-prose md:max-w-none">
           <h2
-            class="text-3xl sm:text-4xl font-semibold"
+            class="text-3xl sm:text-4xl font-semibold leading-tight"
             style="color: #0b3e61;"
           >
-            Cavelux es una empresa familiar, con más de 27 años de experiencia que se dedica al rubro de la cartelería, manteniendo desde el primer día una misma línea del compromiso y trabajo
+            <span class="text-[#ee7f08]">27 años</span> creando la imagen perfecta para tu marca
           </h2>
 
-          <p class="mt-5 text-lg" style="color: #0b3e61; white-space: pre-line;">
-            Nuestro crecimiento se construye día a día gracias a la confianza de quienes nos eligen y a la búsqueda constante de mejorar cada proyecto. Hoy somos una empresa consolidada en la región y seguimos con el mismo objetivo: dar a cada marca la imagen que busca, poniendo a nuestros clientes en el centro y asegurando que se sientan plenamente acompañados al elegirnos.
-          </p>
+          <div class="mt-6 space-y-4">
+            <p
+              class="text-lg leading-relaxed"
+              style="color: #0b3e61;"
+            >
+              Somos una <strong>empresa familiar</strong> especializada en cartelería y comunicación visual, 
+              manteniendo desde el primer día nuestro compromiso con la excelencia y el trabajo de calidad.
+            </p>
 
-          <div class="mt-8 flex gap-6">
+            <p
+              class="text-lg leading-relaxed"
+              style="color: #0b3e61;"
+            >
+              Nuestro crecimiento se construye día a día gracias a la <em>confianza de quienes nos eligen</em> 
+              y a la búsqueda constante de superar expectativas en cada proyecto.
+            </p>
+
+            <p
+              class="text-lg leading-relaxed font-medium"
+              style="color: #0b3e61;"
+            >
+              Hoy somos una empresa consolidada en la región con un objetivo claro: 
+              <span class="text-[#ee7f08]">dar a cada marca la imagen que busca</span>, 
+              poniendo a nuestros clientes en el centro y asegurando que se sientan 
+              plenamente acompañados al elegirnos.
+            </p>
+          </div>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-6">
             <!-- Botón Contactanos con estilo group -->
             <a
               href="https://wa.me/1234567890"
-              class="group relative inline-flex items-center gap-3 text-lg font-semibold focus:ring-3 focus:outline-none"
+              class="group relative inline-flex items-center justify-center gap-3 text-lg font-semibold focus:ring-3 focus:outline-none transition-all duration-200"
               aria-label="Contactarnos por WhatsApp"
               style="color: #ee7f08;"
             >
               <span
-                class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-[#ee7f08] transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded"
-                aria-hidden="true"
-              ></span>
-              <span class="relative flex items-center gap-3 border border-current bg-white px-8 py-4 rounded">
-                <!-- SVG aquí -->
+                class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-[#ee7f08] transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"
+                aria-hidden="true"></span>
+              <span
+                class="relative flex items-center gap-3 border-2 border-current bg-white px-8 py-4 rounded-lg shadow-sm group-hover:shadow-md transition-shadow"
+              >
+                <!-- SVG WhatsApp -->
                 <svg
                   fill="#ee7f08"
                   height="24"
@@ -39,7 +66,8 @@
                   focusable="false"
                 >
                   <g>
-                    <path d="M227.904,176.981c-0.6-0.288-23.054-11.345-27.044-12.781c-1.629-0.585-3.374-1.156-5.23-1.156
+                    <path
+                      d="M227.904,176.981c-0.6-0.288-23.054-11.345-27.044-12.781c-1.629-0.585-3.374-1.156-5.23-1.156
                       c-3.032,0-5.579,1.511-7.563,4.479c-2.243,3.334-9.033,11.271-11.131,13.642c-0.274,0.313-0.648,0.687-0.872,0.687
                       c-0.201,0-3.676-1.431-4.728-1.888c-24.087-10.463-42.37-35.624-44.877-39.867c-0.358-0.61-0.373-0.887-0.376-0.887
                       c0.088-0.323,0.898-1.135,1.316-1.554c1.223-1.21,2.548-2.805,3.83-4.348c0.607-0.731,1.215-1.463,1.812-2.153
@@ -48,53 +76,76 @@
                       c-5.385,3.395-14.495,14.217-14.495,33.249c0,17.129,10.87,33.302,15.537,39.453c0.116,0.155,0.329,0.47,0.638,0.922
                       c17.873,26.102,40.154,45.446,62.741,54.469c21.745,8.686,32.042,9.69,37.896,9.69c0.001,0,0.001,0,0.001,0
                       c2.46,0,4.429-0.193,6.166-0.364l1.102-0.105c7.512-0.666,24.02-9.22,27.775-19.655c2.958-8.219,3.738-17.199,1.77-20.458
-                      C233.168,179.508,230.845,178.393,227.904,176.981z"/>
-                    <path d="M156.734,0C73.318,0,5.454,67.354,5.454,150.143c0,26.777,7.166,52.988,20.741,75.928L0.212,302.716
+                      C233.168,179.508,230.845,178.393,227.904,176.981z"
+                    ></path>
+                    <path
+                      d="M156.734,0C73.318,0,5.454,67.354,5.454,150.143c0,26.777,7.166,52.988,20.741,75.928L0.212,302.716
                       c-0.484,1.429-0.124,3.009,0.933,4.085C1.908,307.58,2.943,308,4,308c0.405,0,0.813-0.061,1.211-0.188l79.92-25.396
                       c21.87,11.685,46.588,17.853,71.604,17.853C240.143,300.27,308,232.923,308,150.143C308,67.354,240.143,0,156.734,0z
                       M156.734,268.994c-23.539,0-46.338-6.797-65.936-19.657c-0.659-0.433-1.424-0.655-2.194-0.655c-0.407,0-0.815,0.062-1.212,0.188
                       l-40.035,12.726l12.924-38.129c0.418-1.234,0.209-2.595-0.561-3.647c-14.924-20.392-22.813-44.485-22.813-69.677
                       c0-65.543,53.754-118.867,119.826-118.867c66.064,0,119.812,53.324,119.812,118.867
-                      C276.546,215.678,222.799,268.994,156.734,268.994z"/>
+                      C276.546,215.678,222.799,268.994,156.734,268.994z"
+                    ></path>
                   </g>
                 </svg>
-                Contactanos
+                Contáctanos
               </span>
             </a>
 
             <!-- Botón Ver trabajos con estilo group -->
             <a
               href="#grilla"
-              class="group relative inline-block text-lg font-semibold focus:ring-3 focus:outline-none"
+              class="group relative inline-flex items-center justify-center text-lg font-semibold focus:ring-3 focus:outline-none transition-all duration-200"
               aria-label="Ver trabajos realizados"
               style="color: #0b3e61;"
             >
               <span
-                class="absolute inset-0 translate-x-0 translate-y-0 bg-[#0b3e61] transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5 rounded"
-                aria-hidden="true"
-              ></span>
-              <span class="relative block border border-current bg-white px-8 py-4 rounded">
-                Ver trabajos
+                class="absolute inset-0 translate-x-0 translate-y-0 bg-[#0b3e61] transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5 rounded-lg"
+                aria-hidden="true"></span>
+              <span
+                class="relative block border-2 border-current bg-white px-8 py-4 rounded-lg shadow-sm group-hover:shadow-md transition-shadow"
+              >
+                Ver nuestros trabajos
               </span>
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Columna derecha con borde animado igual que botones -->
+      <!-- Columna derecha con 4 imágenes en grid manteniendo tamaño global -->
       <div>
-        <div class="group relative inline-block rounded-xl shadow-md w-full aspect-[4/3] overflow-hidden">
-          <span
-            class="absolute inset-0 translate-x-0 translate-y-0 bg-[#0b3e61] transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5 rounded-xl"
-            aria-hidden="true"
-          ></span>
-          <img
-            src="/imagen2.jpg"
-            alt="Trabajo estrella de cartelería en montaje nocturno"
-            class="relative w-full h-full object-cover rounded-xl"
-            loading="eager"
-            decoding="async"
-          />
+        <div
+          class="group relative inline-block rounded-xl w-full aspect-[4/3] overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+        >
+          <div
+            class="relative w-full h-full grid grid-cols-2 grid-rows-2 gap-2 p-2 rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100"
+          >
+            <img
+              src="./hero_img1.jpg"
+              alt="Trabajo profesional de cartelería urbana con diseño moderno"
+              class="object-cover w-full h-full rounded-xl hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+            <img
+              src="./hero_img2.jpg"
+              alt="Materiales de impresión y comunicación visual de alta calidad en taller"
+              class="object-cover w-full h-full rounded-xl hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+            <img
+              src="./hero_img3.jpg"
+              alt="Equipo de profesionales trabajando en instalación de cartelería durante la tarde"
+              class="object-cover w-full h-full rounded-xl hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+            <img
+              src="./hero_img4.png"
+              alt="Muestra de identidad de marca moderna con iluminación creativa e impacto visual"
+              class="object-cover w-full h-full rounded-xl hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </div>
