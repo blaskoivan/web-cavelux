@@ -5,14 +5,62 @@ const cards = [
     name: "Ploteo vehicular",
     description:
       "El ploteo vehicular convierte tu vehículo en una herramienta de comunicación en movimiento. Con materiales de alta calidad y diseños personalizados, logramos que tu marca se vea en cada recorrido, garantizando durabilidad, resistencia a la intemperie y un acabado profesional",
-    whatsappLink: "https://wa.me/12345678901?text=Hola,%20quiero%20una%20cotización%20de%20Ploteo%20vehicular",
+    whatsappLink:
+      "https://wa.me/12345678901?text=Hola,%20quiero%20una%20cotización%20de%20Ploteo%20vehicular",
   },
   {
     imgSrc: "/carteleria1.jpg",
     name: "Carteleria",
+    description:"Frontlight: Los carteles frontlight se iluminan desde el frente mediante reflectores externos. Son una opción resistente y versátil, ideal para destacar tu marca en espacios amplios y con excelente visibilidad nocturna./Backlight: Los carteles backlight cuentan con iluminación LED interna que atraviesa la lona generando un brillo uniforme y atractivo. Son perfectos para lograr un impacto visual moderno y llamativo, tanto de día como de noche",
+    whatsappLink:
+      "https://wa.me/10987654321?text=Hola,%20quiero%20una%20cotización%20de%20Carteleria",
+  },
+  {
+    imgSrc: "/letras_cajas.jpg",
+    name: "Letras corporeas",
     description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis perferendis hic asperiores quibusdam quidem voluptates doloremque reiciendis nostrum harum. Repudiandae?",
-    whatsappLink: "https://wa.me/10987654321?text=Hola,%20quiero%20una%20cotización%20de%20Carteleria",
+      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+    whatsappLink:
+      "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
+  },
+  {
+    imgSrc: "/letras_cajas.jpg",
+    name: "Letras cajas",
+    description:
+      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+    whatsappLink:
+      "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
+  },
+
+  {
+    imgSrc: "/letras_cajas.jpg",
+    name: "Letras cajas",
+    description:
+      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+    whatsappLink:
+      "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
+  },
+  
+  {
+    imgSrc: "/letras_cajas.jpg",
+    name: "Letras cajas",
+    description:
+      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+    whatsappLink: "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
+  },
+  {
+    imgSrc: "/letras_cajas.jpg",
+    name: "Letras cajas",
+    description:
+      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+    whatsappLink: "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
+  },
+  {
+    imgSrc: "/letras_cajas.jpg",
+    name: "Letras cajas",
+    description:
+      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+    whatsappLink: "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
   },
   {
     imgSrc: "/letras_cajas.jpg",
@@ -39,53 +87,64 @@ const cards = [
   .hover-content {
     opacity: 0;
     transform: translateY(2rem);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
   }
 </style>
 
 <div class="max-w-[95rem] mx-auto mt-16 px-4">
-  <h2 class="text-3xl font-bold text-[#0b3f61] mb-16 text-left">Nuestros trabajos</h2>
+  <h2 class="text-3xl font-bold text-[#0b3f61] mb-16 text-left">
+    Nuestros trabajos
+  </h2>
 
-  <div id="trabajos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 rounded-lg overflow-hidden">
-    {cards.map((card, index) => (
-      <div
-        class="group relative block bg-black rounded-lg overflow-hidden cursor-pointer"
-        onClick={() => {
-          // Alternar clase active para simular hover en móvil
-          const el = document.getElementById(`card-${index}`);
-          if (el.classList.contains('active')) {
-            el.classList.remove('active');
-          } else {
-            // Opcional: cerrar otras tarjetas activas
-            document.querySelectorAll('.group.active').forEach((activeEl) => activeEl.classList.remove('active'));
-            el.classList.add('active');
-          }
-        }}
-        id={`card-${index}`}
-      >
-        <img
-          alt={card.name}
-          src={card.imgSrc}
-          class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-        />
-        <div class="absolute inset-0 bg-[#0b3e61] opacity-0 transition-opacity group-hover:opacity-50"></div>
+  <div
+    id="trabajos"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 rounded-lg overflow-hidden"
+  >
+    {
+      cards.map((card, index) => (
+        <div
+          class="group relative block bg-black rounded-lg overflow-hidden cursor-pointer"
+          onClick={() => {
+            // Alternar clase active para simular hover en móvil
+            const el = document.getElementById(`card-${index}`);
+            if (el.classList.contains("active")) {
+              el.classList.remove("active");
+            } else {
+              // Opcional: cerrar otras tarjetas activas
+              document
+                .querySelectorAll(".group.active")
+                .forEach((activeEl) => activeEl.classList.remove("active"));
+              el.classList.add("active");
+            }
+          }}
+          id={`card-${index}`}
+        >
+          <img
+            alt={card.name}
+            src={card.imgSrc}
+            class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
+          />
+          <div class="absolute inset-0 bg-[#0b3e61] opacity-0 transition-opacity group-hover:opacity-50" />
 
-        <div class="relative p-4 sm:p-6 lg:p-8">
-          <p class="text-xl font-bold text-white sm:text-2xl">{card.name}</p>
+          <div class="relative p-4 sm:p-6 lg:p-8">
+            <p class="text-xl font-bold text-white sm:text-2xl">{card.name}</p>
 
-          <div class="mt-32 sm:mt-48 lg:mt-64 space-y-4 hover-content">
-            <p class="text-sm text-white">{card.description}</p>
-            <a
-              href={card.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full block text-center border-2 border-white text-white font-semibold py-2 px-4 rounded transition-colors hover:bg-[#0b3e61] hover:border-[#0b3e61] hover:text-white"
-            >
-              Pedir cotización
-            </a>
+            <div class="mt-32 sm:mt-48 lg:mt-64 space-y-4 hover-content">
+              <p class="text-sm text-white">{card.description}</p>
+              <a
+                href={card.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full block text-center border-2 border-white text-white font-semibold py-2 px-4 rounded transition-colors hover:bg-[#0b3e61] hover:border-[#0b3e61] hover:text-white"
+              >
+                Pedir cotización
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    ))}
+      ))
+    }
   </div>
 </div>
