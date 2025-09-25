@@ -25,48 +25,48 @@ const cards = [
   },
   {
     imgSrc: "/letras_cajas.jpg",
-    name: "Letras cajas",
+    name: "Impresiones",
     description:
-      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+      "Impresiones de gran formato con la mejor calidad y definición. Ofrecemos soluciones personalizadas en lonas, vinilos, posters y más, garantizando colores intensos, nitidez y durabilidad en cada trabajo",
     whatsappLink:
       "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
   },
 
   {
     imgSrc: "/letras_cajas.jpg",
-    name: "Letras cajas",
+    name: "Fachadas",
     description:
-      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+      "Las fachadas son la carta de presentación de tu negocio. Diseñamos y fabricamos soluciones integrales que combinan estructura, estética y durabilidad, logrando una imagen impactante que refleja la identidad de tu marca desde el primer vistazo",
     whatsappLink:
       "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
   },
   
   {
     imgSrc: "/letras_cajas.jpg",
-    name: "Letras cajas",
+    name: "Señaletica",
     description:
-      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+      "Soluciones funcionales y estéticas para guiar, ordenar y comunicar en todo tipo de espacios, con diseños duraderos y de fácil lectura.",
     whatsappLink: "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
   },
   {
     imgSrc: "/letras_cajas.jpg",
-    name: "Letras cajas",
+    name: "Flybanners",
     description:
-      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+      "Los flybanners son una opción práctica, portátil y llamativa para dar visibilidad a tu marca en eventos, ferias o puntos de venta. Resistentes al viento y de fácil armado, permiten destacar tu imagen en cualquier espacio con un diseño dinámico y atractivo.",
     whatsappLink: "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
   },
   {
     imgSrc: "/letras_cajas.jpg",
-    name: "Letras cajas",
+    name: "Carteles ruteros",
     description:
-      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+      "Presencia en rutas y accesos estratégicos con estructuras sólidas, gran formato y máxima visibilidad a la distancia.",
     whatsappLink: "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
   },
   {
     imgSrc: "/letras_cajas.jpg",
-    name: "Letras cajas",
+    name: "Lonas syder",
     description:
-      "Las letras corpóreas son una de las formas más elegantes y efectivas de dar identidad a tu marca. Con múltiples materiales y terminaciones, se adaptan tanto a interiores como a exteriores, ofreciendo presencia, durabilidad y un acabado de calida",
+      "Protección y publicidad en movimiento. Lonas resistentes y personalizadas para camiones, que combinan funcionalidad y visibilidad de marca en cada recorrido.",
     whatsappLink: "https://wa.me/11223344556?text=Hola,%20quiero%20una%20cotización%20de%20Letras%20cajas",
   },
 ];
@@ -105,7 +105,7 @@ const cards = [
     {
       cards.map((card, index) => (
         <div
-          class="group relative block bg-black rounded-lg overflow-hidden cursor-pointer"
+          class="group relative block bg-black rounded-lg overflow-hidden cursor-pointer card-container"
           onClick={() => {
             // Alternar clase active para simular hover en móvil
             const el = document.getElementById(`card-${index}`);
@@ -128,11 +128,11 @@ const cards = [
           />
           <div class="absolute inset-0 bg-[#0b3e61] opacity-0 transition-opacity group-hover:opacity-50" />
 
-          <div class="relative p-4 sm:p-6 lg:p-8">
+          <div class="relative p-4 sm:p-6 lg:p-8 h-full flex flex-col justify-between">
             <p class="text-xl font-bold text-white sm:text-2xl">{card.name}</p>
 
-            <div class="mt-32 sm:mt-48 lg:mt-64 space-y-4 hover-content">
-              <p class="text-sm text-white">{card.description}</p>
+            <div class="mt-32 sm:mt-48 lg:mt-64 space-y-4 hover-content flex-grow">
+              <p class="text-sm text-white line-clamp-4">{card.description}</p> {/* line-clamp para truncar descripciones largas */}
               <a
                 href={card.whatsappLink}
                 target="_blank"
