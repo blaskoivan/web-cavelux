@@ -28,18 +28,43 @@ import Mapa from '../components/Mapa.astro';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Carga de la fuente Assistant con pesos de 200 a 800 -->
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap" rel="stylesheet" />
+    <style>
+      /* Estilos para el fondo difuminado */
+      .background-blur {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('/public/fondo_blanco.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        filter: blur(2px);
+        z-index: -1;
+      }
+      /* Para evitar que el blur cree un borde visible */
+      .background-blur::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: inherit;
+        filter: inherit;
+      }
+    </style>
   </head>
   <body class="min-h-screen bg-white text-slate-800 antialiased" style="font-family: 'Assistant', sans-serif;">
+    <div class="background-blur"></div>
+
     <Header />
     <Hero />
     <Servicios />
     <Trabajos />
     <Clientes />
     <Mapa />
-    
-  
 
-    <main class="pt-16">{/* espacio por header sticky */}
+    <main class="pt-16 relative z-10">{/* espacio por header sticky */}
       <slot />
     </main>
   </body>
