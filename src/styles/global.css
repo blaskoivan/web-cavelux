@@ -1,12 +1,9 @@
 @import "tailwindcss";
 
 .body-pattern-bg {
-  background-image: url('/public/fondo_blanco.jpg');
+  background-image: url();
   background-repeat: repeat;
   background-position: center;
   background-color: white;
 }
 
-.service-block {
-    min-height: 200px; /* Ajusta según convenga */
-  }
