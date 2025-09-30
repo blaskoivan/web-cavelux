@@ -77,7 +77,7 @@ const cards = [
     scroll-behavior: smooth;
   }
 
-  /* Estilos para el hover y la clase activa */
+  
   .group:hover .hover-content,
   .group.active .hover-content {
     opacity: 1;
@@ -107,12 +107,12 @@ const cards = [
         <div
           class="group relative block bg-black rounded-lg overflow-hidden cursor-pointer card-container"
           onClick={() => {
-            // Alternar clase active para simular hover en móvil
+            
             const el = document.getElementById(`card-${index}`);
             if (el.classList.contains("active")) {
               el.classList.remove("active");
             } else {
-              // Opcional: cerrar otras tarjetas activas
+              
               document
                 .querySelectorAll(".group.active")
                 .forEach((activeEl) => activeEl.classList.remove("active"));
@@ -132,7 +132,7 @@ const cards = [
             <p class="text-xl font-bold text-white sm:text-2xl">{card.name}</p>
 
             <div class="mt-32 sm:mt-48 lg:mt-64 space-y-4 hover-content flex-grow">
-              <p class="text-sm text-white line-clamp-4">{card.description}</p> {/* line-clamp para truncar descripciones largas */}
+              <p class="text-sm text-white line-clamp-4">{card.description}</p> {}
               <a
                 href={card.whatsappLink}
                 target="_blank"
