@@ -29,6 +29,12 @@ import Mapa from '../components/Mapa.astro';
     
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap" rel="stylesheet" />
     <style>
+      /* Resetear márgenes del html y body */
+      html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+      }
       
       .background-blur {
         position: fixed;
@@ -36,7 +42,7 @@ import Mapa from '../components/Mapa.astro';
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-image: url('');
+        background-image: url('/fondo_c.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -44,6 +50,7 @@ import Mapa from '../components/Mapa.astro';
         filter: blur(2px);
         z-index: -1;
       }
+      
       /* Para evitar que el blur cree un borde visible */
       .background-blur::after {
         content: '';
@@ -54,19 +61,20 @@ import Mapa from '../components/Mapa.astro';
       }
     </style>
   </head>
-  <body class="min-h-screen bg-white text-slate-800 antialiased" style="font-family: 'Assistant', sans-serif;">
+  <body class="text-slate-800 antialiased" style="font-family: 'Assistant', sans-serif;">
     <div class="background-blur"></div>
 
     <Header />
-    <Hero />
-    <Servicios />
-    <Trabajos />
-    <Clientes />
-    <Mapa />
-    <Footer/>
-
-    <main class="pt-16 relative z-10">{/* espacio por header sticky */}
+    
+    <main class="relative z-10">
+      <Hero />
+      <Servicios />
+      <Trabajos />
+      <Clientes />
+      <Mapa />
       <slot />
     </main>
+
+    <Footer/>
   </body>
 </html>
