@@ -15,7 +15,7 @@ const images = [
 ---
 
 <header class="relative h-screen w-full overflow-hidden">
-  <!-- Imágenes del carrusel -->
+  
   <div id="carousel" class="absolute inset-0 w-full h-full">
     {
       images.map((src, i) => (
@@ -30,19 +30,19 @@ const images = [
     }
   </div>
 
-  <!-- Overlay para oscurecer y mejorar legibilidad -->
+  
   <div class="absolute inset-0 bg-[#0a3f61]/40 backdrop-blur-[2px] z-20"></div>
 
   <!-- Contenido del header -->
   <div class="relative z-30 mx-auto max-w-7xl h-full flex flex-col">
-    <!-- Barra superior: logo a la izquierda, nav centrado, menú móvil a la derecha -->
+    
     <div class="flex items-end h-20 w-full px-4 sm:px-6 lg:px-8">
-      <!-- Logo a la izquierda -->
+      
       <a href="#inicio" class="flex-shrink-0 mr-42">
         <img src="/logo_cavelux.png" alt="Cavelux Logo" class="h-16 w-auto" />
       </a>
 
-      <!-- Contenedor central que crece y centra el nav -->
+      
       <div class="flex flex-grow">
         <nav class="hidden md:flex items-end gap-12 text-white">
           {
@@ -119,7 +119,7 @@ const images = [
       </details>
     </div>
 
-    <!-- Texto centrado debajo de la barra -->
+    
     <div class="flex-grow flex flex-col justify-center items-start text-white text-left px-4 sm:px-6 lg:px-8 gap-4 w-full max-w-xl -mt-50">
       <h1 class="text-4xl font-bold drop-shadow-lg">FABRICAMOS TU IMAGEN</h1>
       <p class="text-lg drop-shadow-md font-bold">

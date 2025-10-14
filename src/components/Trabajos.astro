@@ -162,8 +162,22 @@ const cards = [
 
   .slider-wrapper {
     display: flex;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     height: 500px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+  }
+
+  .slider-wrapper:active {
+    cursor: grabbing;
+  }
+
+  .slider-wrapper::-webkit-scrollbar {
+    display: none;
   }
 
   .slider-image {
@@ -172,40 +186,11 @@ const cards = [
     object-fit: contain;
     background: #0a3552;
     padding: 2rem;
-  }
-
-  .slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 55px;
-    height: 55px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    line-height: 1;
-  }
-
-  .slider-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-50%) scale(1.1);
-  }
-
-  .slider-btn.prev {
-    left: 1.5rem;
-  }
-
-  .slider-btn.next {
-    right: 1.5rem;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
   }
 
   .slider-indicators {
@@ -322,20 +307,6 @@ const cards = [
       padding: 1rem;
     }
 
-    .slider-btn {
-      width: 45px;
-      height: 45px;
-      font-size: 1.5rem;
-    }
-
-    .slider-btn.prev {
-      left: 0.5rem;
-    }
-
-    .slider-btn.next {
-      right: 0.5rem;
-    }
-
     .modal-info {
       padding: 1.5rem;
     }
@@ -398,8 +369,6 @@ const cards = [
       <div class="slider-wrapper" id="slider-wrapper">
         <!-- Images will be inserted here -->
       </div>
-      <button class="slider-btn prev" id="prev-btn">‹</button>
-      <button class="slider-btn next" id="next-btn">›</button>
       <div class="slider-indicators" id="indicators">
         <!-- Indicators will be inserted here -->
       </div>
@@ -427,6 +396,10 @@ const cards = [
   var selectedIndex = -1;
   var currentSlide = 0;
   var totalSlides = 0;
+  var isDown = false;
+  var startX;
+  var scrollLeft;
+  var sliderWrapper;
 
   function toggleCardActive(element) {
     var isActive = element.classList.contains('active');
@@ -439,11 +412,7 @@ const cards = [
     }
   }
 
-  function updateSlider() {
-    var sliderWrapper = document.getElementById('slider-wrapper');
-    var translateX = -(currentSlide * 100);
-    sliderWrapper.style.transform = 'translateX(' + translateX + '%)';
-
+  function updateIndicators() {
     var indicators = document.querySelectorAll('.indicator');
     for (var i = 0; i < indicators.length; i++) {
       indicators[i].classList.remove('active');
@@ -453,19 +422,48 @@ const cards = [
     }
   }
 
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateSlider();
-  }
-
-  function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateSlider();
+  function handleScroll() {
+    if (!sliderWrapper) return;
+    var scrollLeftPos = sliderWrapper.scrollLeft;
+    var slideWidth = sliderWrapper.offsetWidth;
+    currentSlide = Math.round(scrollLeftPos / slideWidth);
+    updateIndicators();
   }
 
   function goToSlide(index) {
-    currentSlide = index;
-    updateSlider();
+    if (!sliderWrapper) return;
+    var slideWidth = sliderWrapper.offsetWidth;
+    sliderWrapper.scrollTo({
+      left: slideWidth * index,
+      behavior: 'smooth'
+    });
+  }
+
+  function setupMouseDrag() {
+    sliderWrapper.addEventListener('mousedown', function(e) {
+      isDown = true;
+      sliderWrapper.style.cursor = 'grabbing';
+      startX = e.pageX - sliderWrapper.offsetLeft;
+      scrollLeft = sliderWrapper.scrollLeft;
+    });
+
+    sliderWrapper.addEventListener('mouseleave', function() {
+      isDown = false;
+      sliderWrapper.style.cursor = 'grab';
+    });
+
+    sliderWrapper.addEventListener('mouseup', function() {
+      isDown = false;
+      sliderWrapper.style.cursor = 'grab';
+    });
+
+    sliderWrapper.addEventListener('mousemove', function(e) {
+      if (!isDown) return;
+      e.preventDefault();
+      var x = e.pageX - sliderWrapper.offsetLeft;
+      var walk = (x - startX) * 2;
+      sliderWrapper.scrollLeft = scrollLeft - walk;
+    });
   }
 
   function openModal(index, event) {
@@ -483,12 +481,12 @@ const cards = [
     document.getElementById('modal-description').textContent = card.description;
     document.getElementById('modal-whatsapp').href = card.whatsappLink;
 
-    var sliderWrapper = document.getElementById('slider-wrapper');
+    sliderWrapper = document.getElementById('slider-wrapper');
     var imagesHTML = '';
     for (var i = 0; i < card.gallery.length; i++) {
       var imgSrc = card.gallery[i];
       var altText = card.name + ' ' + (i + 1);
-      imagesHTML += '<img src="' + imgSrc + '" alt="' + altText + '" class="slider-image">';
+      imagesHTML += '<img src="' + imgSrc + '" alt="' + altText + '" class="slider-image" draggable="false">';
     }
     sliderWrapper.innerHTML = imagesHTML;
 
@@ -508,15 +506,22 @@ const cards = [
       });
     }
 
+    sliderWrapper.addEventListener('scroll', handleScroll);
+    setupMouseDrag();
+
     document.getElementById('modal').classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   }
 
   function closeModal() {
+    if (sliderWrapper) {
+      sliderWrapper.removeEventListener('scroll', handleScroll);
+    }
     document.getElementById('modal').classList.add('hidden');
     document.body.style.overflow = 'auto';
     selectedIndex = -1;
     currentSlide = 0;
+    sliderWrapper = null;
   }
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -543,8 +548,6 @@ const cards = [
     });
 
     document.getElementById('close-modal-btn').addEventListener('click', closeModal);
-    document.getElementById('prev-btn').addEventListener('click', prevSlide);
-    document.getElementById('next-btn').addEventListener('click', nextSlide);
   });
 
   document.addEventListener('keydown', function(e) {
@@ -553,9 +556,11 @@ const cards = [
       if (e.key === 'Escape') {
         closeModal();
       } else if (e.key === 'ArrowLeft') {
-        prevSlide();
+        var newSlide = Math.max(0, currentSlide - 1);
+        goToSlide(newSlide);
       } else if (e.key === 'ArrowRight') {
-        nextSlide();
+        var newSlide = Math.min(totalSlides - 1, currentSlide + 1);
+        goToSlide(newSlide);
       }
     }
   });
