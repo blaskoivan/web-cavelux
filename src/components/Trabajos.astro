@@ -144,6 +144,7 @@ const cards = [
   .modal-overlay {
     background-color: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(5px);
+    z-index: 99999 !important;
   }
 
   .modal-content {
@@ -360,7 +361,7 @@ const cards = [
 </div>
 
 <!-- Modal con Slider -->
-<div id="modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-overlay">
+<div id="modal" class="fixed inset-0 hidden flex items-center justify-center p-4 pt-24 modal-overlay" style="z-index: 99999;">
   <div id="modal-content" class="relative w-full max-w-5xl max-h-[95vh] overflow-hidden modal-content">
     <button class="close-btn" id="close-modal-btn">×</button>
 
