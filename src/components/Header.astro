@@ -5,356 +5,236 @@ const nav = [
   { href: "#clientes", label: "Clientes" },
   { href: "#contacto", label: "Contacto" },
 ];
+
 const whatsappLink = "#contacto";
-const images = [
-  "/imagen1.jpg",
-  "/imagen2.jpg",
-  "/imagen3.jpg",
-  "/imagen4.jpg",
-  "/imagen5.jpg",
-];
+const images = ["/imagen1.jpg", "/imagen2.jpg", "/imagen3.jpg", "/imagen4.jpg", "/imagen5.jpg"];
+const totalImages = images.length;
 ---
 
 <header class="relative h-screen w-full overflow-hidden">
   <!-- Carrusel de imágenes -->
-  <div id="carousel" class="absolute inset-0 w-full h-full">
-    {
-      images.map((src, i) => (
-        <img
-          src={src}
-          alt={`Imagen ${i + 1}`}
-          class={`carousel-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${i === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
-          loading="lazy"
-          data-index={i}
-        />
-      ))
-    }
+  <div id="carousel" class="absolute inset-0">
+    {images.map((src, i) => (
+      <img
+        src={src}
+        alt={`Imagen ${i + 1}`}
+        class={`carousel-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === 0 ? "opacity-100 z-10" : "opacity-0"}`}
+        loading={i === 0 ? "eager" : "lazy"}
+        data-index={i}
+      />
+    ))}
   </div>
 
   <!-- Overlay con gradiente -->
   <div class="absolute inset-0 bg-gradient-to-br from-[#0a3f61]/70 via-[#0a3f61]/60 to-[#0a3f61]/80 backdrop-blur-[1px] z-20"></div>
 
   <!-- Elementos flotantes decorativos -->
-  <div class="absolute inset-0 z-20 overflow-hidden pointer-events-none">
-    <div class="floating-element absolute w-20 h-20 rounded-full bg-[#ef7f09]/10 top-[20%] left-[10%]"></div>
-    <div class="floating-element absolute w-32 h-32 rounded-full bg-white/5 top-[60%] right-[15%]"></div>
-    <div class="floating-element absolute w-16 h-16 rounded-full bg-[#ef7f09]/10 bottom-[20%] left-[20%]"></div>
-    <div class="floating-element absolute w-24 h-24 rounded-full bg-white/5 top-[40%] right-[25%]"></div>
+  <div class="absolute inset-0 z-20 overflow-hidden pointer-events-none" aria-hidden="true">
+    {[
+      { w: "w-20", h: "h-20", top: "top-[20%]", left: "left-[10%]", bg: "bg-[#ef7f09]/10", delay: "0s" },
+      { w: "w-32", h: "h-32", top: "top-[60%]", right: "right-[15%]", bg: "bg-white/5", delay: "-5s" },
+      { w: "w-16", h: "h-16", bottom: "bottom-[20%]", left: "left-[20%]", bg: "bg-[#ef7f09]/10", delay: "-10s" },
+      { w: "w-24", h: "h-24", top: "top-[40%]", right: "right-[25%]", bg: "bg-white/5", delay: "-15s" }
+    ].map((el, i) => (
+      <div 
+        class={`floating-element absolute rounded-full ${el.w} ${el.h} ${el.top || ''} ${el.bottom || ''} ${el.left || ''} ${el.right || ''} ${el.bg}`}
+        style={`animation-delay: ${el.delay}`}
+      />
+    ))}
   </div>
 
   <!-- Contenido del header -->
   <div class="relative z-30 h-full flex flex-col">
     <!-- Navbar -->
-    <div id="navbar" class="flex items-center justify-center h-20 w-full transition-all duration-300 z-[1000]">
+    <nav id="navbar" class="flex items-center justify-center h-20 w-full transition-all duration-300" aria-label="Navegación principal">
       <div class="flex items-center w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- Logo -->
-        <a href="#inicio" class="flex-shrink-0 logo-fade-in mr-24">
-          <img src="/logo_cavelux.png" alt="Cavelux Logo" class="h-16 w-auto" />
+        <a href="#inicio" class="flex-shrink-0 logo-fade-in mr-8 md:mr-24">
+          <img src="/logo_cavelux.png" alt="Cavelux Logo" class="h-12 md:h-16 w-auto" />
         </a>
 
         <!-- Navegación desktop -->
-        <div class="flex flex-grow ml-8">
-          <nav class="hidden md:flex items-center gap-14 text-white">
-            {
-              nav.map((item, index) => (
-                <a
-                  href={item.href}
-                  class="nav-item text-[16px] font-bold hover:text-[#ef7f09] transition-all duration-300 relative group"
-                  style={`animation-delay: ${(index + 1) * 0.1}s`}
-                >
-                  {item.label}
-                  <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#ef7f09] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-              ))
-            }
+        <div class="hidden md:flex flex-grow ml-8 items-center gap-8 lg:gap-14 text-white">
+          {nav.map((item, i) => (
             <a
-              href={whatsappLink}
-              class="nav-item flex items-center justify-center w-10 h-10 rounded-full bg-white hover:bg-gray-100 transition-all duration-300 hover:scale-110 shadow-lg"
-              style="animation-delay: 0.5s"
-              aria-label="Contactar por WhatsApp"
+              href={item.href}
+              class="nav-item text-sm lg:text-base font-bold hover:text-[#ef7f09] transition-colors duration-300 relative group"
+              style={`animation-delay: ${(i + 1) * 0.1}s`}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="#25D366"
-                viewBox="0 0 16 16"
-              >
-                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
-              </svg>
+              {item.label}
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#ef7f09] transition-all duration-300 group-hover:w-full" aria-hidden="true"></span>
             </a>
-          </nav>
-          </div>
-    </div>
-
-        <!-- Menú móvil -->
-        <details class="md:hidden ml-auto relative z-10">
-        <summary
-          class="list-none cursor-pointer p-2 -mr-2 rounded-md hover:bg-white/10 text-white transition-all"
-        >
-          <span class="sr-only">Abrir menú</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </summary>
-        <div
-          class="absolute right-4 mt-2 w-56 rounded-lg border border-slate-200 bg-white shadow-lg p-2 flex flex-col"
-        >
-          {
-            nav.map((item) => (
-              <a
-                href={item.href}
-                class="px-3 py-2 rounded-md hover:bg-[#ef7f09]/10 hover:text-[#ef7f09] text-sm text-slate-700 transition-all duration-200"
-              >
-                {item.label}
-              </a>
-            ))
-          }
+          ))}
           <a
             href={whatsappLink}
-            class="px-3 py-2 rounded-md hover:bg-[#25D366]/10 text-sm text-slate-700 flex items-center gap-2 transition-all duration-200"
+            class="nav-item flex items-center justify-center w-10 h-10 rounded-full bg-white hover:bg-gray-100 transition-all duration-300 hover:scale-110 shadow-lg"
+            style="animation-delay: 0.5s"
+            aria-label="Contactar por WhatsApp"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="#25D366"
-              viewBox="0 0 16 16"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#25D366" viewBox="0 0 16 16" aria-hidden="true">
               <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
             </svg>
-            WhatsApp
           </a>
         </div>
-      </details>
-    </div>
+
+        <!-- Menú móvil -->
+        <details class="md:hidden ml-auto relative">
+          <summary class="list-none cursor-pointer p-2 -mr-2 rounded-md hover:bg-white/10 text-white transition-colors" aria-label="Menú de navegación">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </summary>
+          <div class="absolute right-0 mt-2 w-56 rounded-lg border border-slate-200 bg-white shadow-lg p-2 flex flex-col">
+            {nav.map((item) => (
+              <a href={item.href} class="px-3 py-2 rounded-md hover:bg-[#ef7f09]/10 hover:text-[#ef7f09] text-sm text-slate-700 transition-colors duration-200">
+                {item.label}
+              </a>
+            ))}
+            <a href={whatsappLink} class="px-3 py-2 rounded-md hover:bg-[#25D366]/10 text-sm text-slate-700 flex items-center gap-2 transition-colors duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#25D366" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+              </svg>
+              WhatsApp
+            </a>
+          </div>
+        </details>
+      </div>
+    </nav>
 
     <!-- Contenido principal -->
-    <div class="flex-grow flex flex-col justify-center items-start text-white text-left gap-6 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20">
+    <div class="flex-grow flex flex-col justify-center items-start text-white gap-6 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20">
       <div class="max-w-2xl">
-      <h1 class="hero-title text-5xl md:text-7xl font-black drop-shadow-2xl leading-tight tracking-[0.15em] bold">
-        <span class="block text-2xl md:text-3xl font-light tracking-[0.3em] text-[#ef7f09] mb-2">FABRICAMOS TU</span>
-        IMAGEN
-      </h1>
-      <p class="hero-subtitle text-lg md:text-2xl drop-shadow-lg font-light leading-relaxed text-gray-100 max-w-xl">
-        Diseño, calidad y trayectoria para que tu marca se destaque siempre
-      </p>
-      <a
-        href="#trabajos"
-        class="hero-button group relative inline-flex items-center justify-center text-lg font-semibold focus:ring-3 focus:outline-none transition-all duration-200 mt-4"
-        aria-label="Ver trabajos realizados"
-      >
-        <span
-          class="absolute inset-0 translate-x-0 translate-y-0 bg-[#0a3f61] opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5 group-hover:translate-y-0.5 rounded-lg"
-          aria-hidden="true"></span>
-        <span
-          class="relative block border-2 border-[#ef7f09] bg-[#ef7f09] text-white px-8 py-4 rounded-lg shadow-sm group-hover:shadow-md transition-shadow"
-        >
-          Ver nuestros trabajos
-        </span>
-      </a>
-    </div>
+        <h1 class="hero-title text-4xl sm:text-5xl md:text-7xl font-black drop-shadow-2xl leading-tight tracking-[0.15em]">
+          <span class="block text-xl sm:text-2xl md:text-3xl font-light tracking-[0.3em] text-[#ef7f09] mb-2">FABRICAMOS TU</span>
+          IMAGEN
+        </h1>
+        <p class="hero-subtitle text-base sm:text-lg md:text-2xl drop-shadow-lg font-light leading-relaxed text-gray-100 max-w-xl mt-4">
+          Diseño, calidad y trayectoria para que tu marca se destaque siempre
+        </p>
+        <a href="#trabajos" class="hero-button group relative inline-flex items-center justify-center text-base sm:text-lg font-semibold focus:ring-2 focus:ring-[#ef7f09] focus:outline-none transition-all duration-200 mt-6" aria-label="Ver trabajos realizados">
+          <span class="absolute inset-0 translate-x-0 translate-y-0 bg-[#0a3f61] opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5 group-hover:translate-y-0.5 rounded-lg" aria-hidden="true"></span>
+          <span class="relative block border-2 border-[#ef7f09] bg-[#ef7f09] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-sm group-hover:shadow-md transition-shadow">
+            Ver nuestros trabajos
+          </span>
+        </a>
+      </div>
     </div>
 
     <!-- Controles del carrusel -->
-    <div
-      id="carousel-controls"
-      class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-30"
-    >
-      {
-        images.map((_, i) => (
-          <button
-            class={`carousel-dot w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${i === 0 ? 'bg-[#ef7f09] w-8' : 'bg-white/50'}`}
-            aria-label={`Ir a la imagen ${i + 1}`}
-            data-index={i}
-            type="button"
-          />
-        ))
-      }
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-30" role="tablist" aria-label="Controles del carrusel">
+      {images.map((_, i) => (
+        <button
+          class={`carousel-dot w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 focus:outline-none focus:ring-2 focus:ring-white ${i === 0 ? 'bg-[#ef7f09] w-8' : 'bg-white/50'}`}
+          aria-label={`Imagen ${i + 1} de ${totalImages}`}
+          aria-selected={i === 0 ? "true" : "false"}
+          data-index={i}
+          type="button"
+          role="tab"
+        />
+      ))}
     </div>
   </div>
-
-  <style>
-    /* Animaciones */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes fadeInRight {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) translateX(0);
-      }
-      25% {
-        transform: translateY(-30px) translateX(20px);
-      }
-      50% {
-        transform: translateY(-50px) translateX(-20px);
-      }
-      75% {
-        transform: translateY(-30px) translateX(20px);
-      }
-    }
-
-    .floating-element {
-      animation: float 20s infinite ease-in-out;
-    }
-
-    .floating-element:nth-child(1) {
-      animation-delay: 0s;
-    }
-
-    .floating-element:nth-child(2) {
-      animation-delay: -5s;
-    }
-
-    .floating-element:nth-child(3) {
-      animation-delay: -10s;
-    }
-
-    .floating-element:nth-child(4) {
-      animation-delay: -15s;
-    }
-
-    .logo-fade-in {
-      animation: fadeInLeft 1s ease-out;
-    }
-
-    .nav-item {
-      animation: fadeInUp 1s ease-out backwards;
-    }
-
-    .hero-title {
-      animation: fadeInLeft 1s ease-out 0.2s backwards;
-    }
-
-    .hero-subtitle {
-      animation: fadeInRight 1s ease-out 0.4s backwards;
-    }
-
-    .hero-button {
-      animation: fadeInUp 1s ease-out 0.6s backwards;
-    }
-
-    /* Navbar fija con scroll */
-    .navbar-scrolled {
-      position: fixed !important;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(135deg, #0a3f61 0%, #083554 100%) !important;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      padding-top: 0.5rem !important;
-      padding-bottom: 0.5rem !important;
-      height: auto !important;
-    }
-
-    .navbar-scrolled .logo-fade-in img {
-      height: 4rem !important;
-      transition: height 0.3s ease;
-    }
-  </style>
-
-  <script is:inline>
-    (() => {
-      // Carrusel
-      const images = document.querySelectorAll(".carousel-image");
-      const buttons = document.querySelectorAll("#carousel-controls button");
-      let currentIndex = 0;
-      const total = images.length;
-
-      function showImage(index) {
-        images.forEach((img, i) => {
-          img.style.opacity = i === index ? "1" : "0";
-          img.style.zIndex = i === index ? "10" : "0";
-        });
-        buttons.forEach((btn, i) => {
-          if (i === index) {
-            btn.classList.add("bg-[#ef7f09]", "w-8");
-            btn.classList.remove("bg-white/50");
-          } else {
-            btn.classList.remove("bg-[#ef7f09]", "w-8");
-            btn.classList.add("bg-white/50");
-          }
-        });
-        currentIndex = index;
-      }
-
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const index = Number(btn.dataset.index);
-          showImage(index);
-          resetInterval();
-        });
-      });
-
-      let interval = setInterval(() => {
-        let nextIndex = (currentIndex + 1) % total;
-        showImage(nextIndex);
-      }, 5000);
-
-      function resetInterval() {
-        clearInterval(interval);
-        interval = setInterval(() => {
-          let nextIndex = (currentIndex + 1) % total;
-          showImage(nextIndex);
-        }, 5000);
-      }
-
-      // Navbar fija al hacer scroll
-      const navbar = document.getElementById("navbar");
-      let lastScroll = 0;
-
-      window.addEventListener("scroll", () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 100) {
-          navbar.classList.add("navbar-scrolled");
-        } else {
-          navbar.classList.remove("navbar-scrolled");
-        }
-        
-        lastScroll = currentScroll;
-      });
-    })();
-  </script>
 </header>
+
+<style>
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-30px) translateX(20px); }
+    50% { transform: translateY(-50px) translateX(-20px); }
+    75% { transform: translateY(-30px) translateX(20px); }
+  }
+
+  .floating-element { animation: float 20s infinite ease-in-out; }
+  .logo-fade-in { animation: fadeInLeft 1s ease-out; }
+  .nav-item { animation: fadeInUp 1s ease-out backwards; }
+  .hero-title { animation: fadeInLeft 1s ease-out 0.2s backwards; }
+  .hero-subtitle { animation: fadeInRight 1s ease-out 0.4s backwards; }
+  .hero-button { animation: fadeInUp 1s ease-out 0.6s backwards; }
+
+  #navbar.navbar-scrolled {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #0a3f61 0%, #083554 100%) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+</style>
+
+<script>
+  const images = document.querySelectorAll<HTMLImageElement>(".carousel-image");
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".carousel-dot");
+  let currentIndex: number = 0;
+  let interval: number;
+
+  const showImage = (index: number): void => {
+    images.forEach((img, i) => {
+      img.style.opacity = i === index ? "1" : "0";
+      img.style.zIndex = i === index ? "10" : "0";
+    });
+    
+    buttons.forEach((btn, i) => {
+      btn.classList.toggle("bg-[#ef7f09]", i === index);
+      btn.classList.toggle("w-8", i === index);
+      btn.classList.toggle("bg-white/50", i !== index);
+      btn.setAttribute("aria-selected", i === index ? "true" : "false");
+    });
+    
+    currentIndex = index;
+  };
+
+  const startCarousel = (): void => {
+    interval = window.setInterval(() => {
+      showImage((currentIndex + 1) % images.length);
+    }, 5000);
+  };
+
+  const resetCarousel = (): void => {
+    clearInterval(interval);
+    startCarousel();
+  };
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const index = btn.dataset.index;
+      if (index) {
+        showImage(Number(index));
+        resetCarousel();
+      }
+    });
+  });
+
+  // Navbar scroll
+  const navbar = document.getElementById("navbar");
+  let ticking: boolean = false;
+
+  if (navbar) {
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          navbar.classList.toggle("navbar-scrolled", window.pageYOffset > 100);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  startCarousel();
+</script>
